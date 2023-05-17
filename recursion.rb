@@ -123,22 +123,27 @@ def merge_sort(arr)
     mid = arr.length / 2
     left = arr[0...mid]
     right = arr[mid..-1]
-
-    return merge(left, right) if arr.length <= 1
+    if arr.length == 1
+        return arr 
+    else 
+        merge(merge_sort(left),merge_sort(right))
+    end 
 end 
 
 def merge(left, right)
    res = []
-  (0...left.length).each do |i|
-    res << left[i] << right[i]
-    if res[0] > res[1]
-      res[0] = res[1]
-    end     
+   until left.empty? || right.empty?
+    if left[0] < right[0]
+        res << left.shift()
+    else 
+        res << right.shift()
+    end 
    end
-   res
-end
 
-p merge([38], [3])
+   res
+end 
+
+p merge_sort([38,1,22,42,8,64,2,3,4])
 
 def subsets(arr)
 end 

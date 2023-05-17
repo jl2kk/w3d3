@@ -1,5 +1,5 @@
 
-
+# require "byebug"
 def itr_range(start,max)
     nums = []
     (start...max).each {|i| nums << i}
@@ -90,22 +90,28 @@ end
 
 def bsearch(arr,target)
     sorted = arr.sort 
-    mid = arr.length /2 
+    mid = sorted.length / 2
 
-    if mid == target
-        return sorted.index(mid)
+    if sorted[mid] == target
+        return arr.index(target)
     end 
-
-    if target < mid
-        return bsearch(sorted([0..mid]))
-
-
-
-   
-
-
+    #  debugger
+    if target < sorted[mid]
+        return bsearch(sorted[0...mid], target)
+    elsif target > sorted[mid]
+        return bsearch(sorted[mid..-1], target)
+    end
+    # nil
 
 end 
+
+p bsearch([1, 2, 3], 1) # => 0
+p bsearch([2, 3, 4, 5], 3) # => 1
+p bsearch([2, 4, 6, 8, 10], 6) # => 2
+p bsearch([1, 3, 4, 5, 9], 5) # => 3
+p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
 
 def merge_sort(arr)
 end 

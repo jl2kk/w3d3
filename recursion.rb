@@ -100,7 +100,11 @@ def bsearch(arr,target)
     if target < arr[mid]
         return bsearch(arr[0...mid], target)
     elsif target > arr[mid] 
-        return bsearch(arr[mid..-1], target) + mid
+        if bsearch(arr[mid..-1], target) == nil 
+            return nil 
+        else 
+            return bsearch(arr[mid..-1], target) + mid
+        end 
     end
     
 
@@ -111,8 +115,8 @@ end
 # p bsearch([2, 4, 6, 8, 10], 6) # => 2
 # p bsearch([1, 3, 4, 5, 9], 5) # => 3
 # p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
-p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
-p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
 
 def merge_sort(arr)
 end 

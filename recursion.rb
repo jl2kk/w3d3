@@ -128,11 +128,14 @@ def merge_sort(arr)
     else 
         merge(merge_sort(left),merge_sort(right))
     end 
+
 end 
 
 def merge(left, right)
    res = []
-   until left.empty? || right.empty?
+
+   until right.empty? || left.empty?
+   
     if left[0] < right[0]
         res << left.shift()
     else 
@@ -140,13 +143,34 @@ def merge(left, right)
     end 
    end
 
+    until right.empty?
+        res << right.shift
+    end
+    until left.empty?
+        res << left.shift
+    end
    res
 end 
 
-p merge_sort([38,1,22,42,8,64,2,3,4])
+# p merge_sort([4,6,27,8,3,244,4,53,32,34,23,42])
 
 def subsets(arr)
+  return [] if arr.empty?
+  new_arr = [[]]
+  subsets
+#   arr.each_with_index do |ele, i|
+#     (i...arr.length).each do |idx|
+#         new_arr << subsets(arr[i..idx])
+    end
+end
+new_arr
 end 
+
+
+p subsets([]) # => [[]]
+p subsets([1]) # => [[], [1]]
+p subsets([1, 2]) # => [[], [1], [2], [1, 2]]
+p subsets([1, 2, 3]) # => [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]
 
 def permutations(arr)
 end 

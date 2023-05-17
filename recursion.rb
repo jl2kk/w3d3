@@ -36,12 +36,41 @@ def exponent2(num,exp)
     end 
 end 
 
-
-
-
-
 # exponent2(5,256)
 # p $count
+
+
+def deep_dup(arr)
+  dup_arr = []
+  return [] unless arr.is_a?(Array)
+
+  arr.each do |ele|
+    if ele.is_a?(Array)
+        deep_dup(ele)
+    else
+       dup_arr += [ele]
+    end
+  end
+
+end
+
+
+robot_parts = [
+  ["nuts", "bolts", "washers"],
+  ["capacitors", "resistors", "inductors"]
+]
+
+ dup = deep_dup(robot_parts)
+
+ dup[0] << "LEDs"
+
+ p dup
+ p robot_parts
+
+
+
+
+
 
 
 

@@ -119,7 +119,26 @@ end
 # p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
 
 def merge_sort(arr)
+   
+    mid = arr.length / 2
+    left = arr[0...mid]
+    right = arr[mid..-1]
+
+    return merge(left, right) if arr.length <= 1
 end 
+
+def merge(left, right)
+   res = []
+  (0...left.length).each do |i|
+    res << left[i] << right[i]
+    if res[0] > res[1]
+      res[0] = res[1]
+    end     
+   end
+   res
+end
+
+p merge([38], [3])
 
 def subsets(arr)
 end 

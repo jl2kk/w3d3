@@ -1,5 +1,5 @@
 
-# require "byebug"
+require "byebug"
 def itr_range(start,max)
     nums = []
     (start...max).each {|i| nums << i}
@@ -89,29 +89,30 @@ def rec_fibonacci(n)
 end 
 
 def bsearch(arr,target)
-    sorted = arr.sort 
-    mid = sorted.length / 2
-
-    if sorted[mid] == target
-        return arr.index(target)
+    mid = arr.length / 2
+    if arr[mid] == target
+        return mid
     end 
-    #  debugger
-    if target < sorted[mid]
-        return bsearch(sorted[0...mid], target)
-    elsif target > sorted[mid]
-        return bsearch(sorted[mid..-1], target)
+    if arr.length <= 1 
+        return nil 
+    end 
+
+    if target < arr[mid]
+        return bsearch(arr[0...mid], target)
+    elsif target > arr[mid] 
+        return bsearch(arr[mid..-1], target) + mid
     end
-    # nil
+    
 
 end 
 
-p bsearch([1, 2, 3], 1) # => 0
-p bsearch([2, 3, 4, 5], 3) # => 1
-p bsearch([2, 4, 6, 8, 10], 6) # => 2
-p bsearch([1, 3, 4, 5, 9], 5) # => 3
-p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
-# p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
-# p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
+# p bsearch([1, 2, 3], 1) # => 0
+# p bsearch([2, 3, 4, 5], 3) # => 1
+# p bsearch([2, 4, 6, 8, 10], 6) # => 2
+# p bsearch([1, 3, 4, 5, 9], 5) # => 3
+# p bsearch([1, 2, 3, 4, 5, 6], 6) # => 5
+p bsearch([1, 2, 3, 4, 5, 6], 0) # => nil
+p bsearch([1, 2, 3, 4, 5, 7], 6) # => nil
 
 def merge_sort(arr)
 end 
